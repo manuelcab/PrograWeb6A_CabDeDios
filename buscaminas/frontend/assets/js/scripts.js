@@ -28,7 +28,7 @@ function generarTablero(filas, columnas) {
 
                     body: JSON.stringify({fila, columna})
 
-                }).then(Response => Response.json())
+                }).then(response => response.json())
                 .then(data => {
 
                     const spanNumero = document.createElement('span');
@@ -121,7 +121,7 @@ document.querySelector('#nivel').addEventListener('change', async (e) => {
 
         body: JSON.stringify({ nivel })
 
-    }).then(Response => reponse.JSON())
+    }).then(response => reponse.JSON())
     .then(data => {
 
         console.log(data);
