@@ -111,7 +111,7 @@ function generarTablero(filas, columnas) {
 
     ]
 
-    await fetch('/generar_tablero.php', {
+    await fetch('generar_tablero.php', {
 
         method: 'POST',
         headers: {
