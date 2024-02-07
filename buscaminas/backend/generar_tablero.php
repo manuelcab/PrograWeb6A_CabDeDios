@@ -75,7 +75,7 @@ class Buscaminas {
 
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $data = json_decode(file_get_contents('php://input'));
     $nivel = $data->nivel;

@@ -37,7 +37,7 @@ function generarTablero(filas, columnas) {
 
                     if (data.valor !== -1 && data.valor !== 0) {
 
-                        spanNumero.setAttribute('style', 'color: ${coloresNumeros[data.valor - 1]}');
+                        spanNumero.setAttribute('style', `color: ${coloresNumeros[data.valor - 1]}`);
                         spanNumero.textContent = data.valor;
 
                         e.target.appendChild(spanNumero);
@@ -59,11 +59,11 @@ function generarTablero(filas, columnas) {
 
                 .catch((error) => {
 
-                    console.error('Error: ', error);
+                    console.error('Error:', error);
 
                 });
 
-            },fila, columna);
+            }, fila, columna);
 
             tablero.appendChild(celda);
         }
@@ -121,7 +121,7 @@ document.querySelector('#nivel').addEventListener('change', async (e) => {
 
         body: JSON.stringify({ nivel })
 
-    }).then(response => reponse.JSON())
+    }).then(response => response.json())
     .then(data => {
 
         console.log(data);
