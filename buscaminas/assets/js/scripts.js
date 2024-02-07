@@ -1,3 +1,4 @@
+
 function generarTablero(filas, columnas) {
 
     var tablero = document.getElementById("tablero");
@@ -17,7 +18,7 @@ function generarTablero(filas, columnas) {
 
             celda.addEventListener("click", async (e) => {
 
-                await fetch(window.location.href + 'revelar_celda.php', {
+                await fetch('revelar_celda.php', {
 
                     method: 'POST',
                     headers: {
@@ -72,14 +73,14 @@ function generarTablero(filas, columnas) {
 
     tablero.style.gridTemplateColumns = `repeat(${columnas}, 30px)`;
 
-}
+    }
 
-document.querySelector('#nivel').addEventListener('change', async (e) => {
-    
+    document.querySelector('#nivel').addEventListener('change', async (e) => {
+
     var nivel = document.getElementById("nivel").value;
 
     var filas, columnas;
-    
+
     switch (nivel) {
 
         case "facil":
@@ -110,7 +111,7 @@ document.querySelector('#nivel').addEventListener('change', async (e) => {
 
     ]
 
-    await fetch(window.location.href + 'generar_tablero.php', {
+    await fetch('/generar_tablero.php', {
 
         method: 'POST',
         headers: {
@@ -135,4 +136,4 @@ document.querySelector('#nivel').addEventListener('change', async (e) => {
 
     generarTablero(filas, columnas);
 
-});
+    });
