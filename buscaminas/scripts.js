@@ -1,4 +1,3 @@
-
 function generarTablero(filas, columnas) {
 
     var tablero = document.getElementById("tablero");
@@ -38,7 +37,7 @@ function generarTablero(filas, columnas) {
 
                     if (data.valor !== -1 && data.valor !== 0) {
 
-                        spanNumero.setAttribute('style', `color: ${coloresNumeros[data.valor - 1]}`);
+                        spanNumero.setAttribute('style', 'color: ${coloresNumeros[data.valor - 1]}');
                         spanNumero.textContent = data.valor;
 
                         e.target.appendChild(spanNumero);
