@@ -1,40 +1,33 @@
-body{
-
+body {
     font-family: Arial, sans-serif;
-
 }
 
 #tablero {
-
     display: grid;
     grid-template-columns: repeat(8, 30px);
     gap: 2px;
-
+    margin-top: 20px;
 }
 
 .celda {
-
     width: 30px;
     height: 30px;
-    background-color: ddd;
+    background-color: #ddd; 
     border: 1px solid #888;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
+    font-weight: bold;
+    transition: background-color 0.3s;
 }
 
 .celda:hover {
-
     background-color: #ccc;
-
 }
 
 .celda.revelada {
-
     pointer-events: none;
-    
 }
 
 .bandera::after {
