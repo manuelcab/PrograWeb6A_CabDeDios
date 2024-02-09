@@ -17,55 +17,58 @@ function generarTablero(filas, columnas) {
 
             celda.addEventListener("click", async (e) => {
 
-                await fetch('revelar_celda.php', {
+                if (!e.target.classList.contains('bandera')) {
 
-                    method: 'POST',
-                    headers: {
+                    await fetch('revelar_celda.php', {
 
-                        'Content-Type': 'application/json'
+                        method: 'POST',
+                        headers: {
 
-                    },
+                            'Content-Type': 'application/json'
 
-                    body: JSON.stringify({fila, columna})
+                        },
 
-                }).then(response => response.json())
-                .then(data => {
+                        body: JSON.stringify({fila, columna})
 
-                    const spanNumero = document.createElement('span');
+                    })
+                    .then(response => response.json())
+                    .then(data => {
 
-                    e.target.classList.add('revelada');
+                        const spanNumero = document.createElement('span');
 
-                    if (data.valor !== -1 && data.valor !== 0) {
+                        e.target.classList.add('revelada');
 
-                        spanNumero.setAttribute('style', 'color: ${coloresNumeros[data.valor - 1]}');
-                        spanNumero.textContent = data.valor;
+                        if (data.valor !== -1 && data.valor !== 0) {
 
-                        e.target.appendChild(spanNumero);
+                            spanNumero.setAttribute('style', 'color: ${coloresNumeros[data.valor - 1]}');
+                            spanNumero.textContent = data.valor;
 
-                    } else if (data.valor == 0) {
+                            e.target.appendChild(spanNumero);
 
-                        spanNumero.textContent = '';
-                        e.target.setAttribute('style', 'background-color: gray');
-                        e.target.appendChild(spanNumero);
+                        } else if (data.valor == 0) {
 
-                    } else {
+                            spanNumero.textContent = '';
+                            e.target.setAttribute('style', 'background-color: gray');
+                            e.target.appendChild(spanNumero);
 
-                        spanNumero.textContent = '💣';
-                        e.target.appendChild(spanNumero);
+                        } else {
 
-                    }
+                            spanNumero.textContent = '💣';
+                            e.target.appendChild(spanNumero);
 
-                })
+                        }
 
-                .catch((error) => {
+                    })
 
-                    console.error('Error:', error);
+                    .catch((error) => {
 
-                });
+                        console.error('Error:', error);
 
-            }, fila, columna);
+                    });
 
-            tablero.appendChild(celda);
+                }
+
+            }, fila, columna); //borrrar
 
             celda.addEventListener("contextmenu", (e) => {
                 e.preventDefault();
@@ -81,8 +84,10 @@ function generarTablero(filas, columnas) {
                         
                     }
                 }
-                
+
             });
+
+            tablero.appendChild(celda);
 
         }
 
