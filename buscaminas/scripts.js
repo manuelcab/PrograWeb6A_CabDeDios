@@ -1,8 +1,20 @@
-function generarTablero(filas, columnas) {
+function generarTablero(filas, columnas, tableroData) {
 
-    var tablero = document.getElementById("tablero");
+    const coloresNumeros = [
 
-    tablero.innerHTML = "";
+        "blue",
+        "green",
+        "red",
+        "purple",
+        "maroon",
+        "turquoise",
+        "black",
+        "gray",
+
+    ]
+
+    var tableroDiv = document.getElementById("tablero");
+    tableroDiv.innerHTML = "";
 
     for (var i = 0; i < filas; i++) {
 
@@ -11,6 +23,10 @@ function generarTablero(filas, columnas) {
             var celda = document.createElement("div");
             celda.className = "celda";
             celda.textContent = "";
+
+            
+            celda.dataset.fila = i;
+            celda.dataset.columna = j;
 
             const fila = i;
             const columna = j;
@@ -40,7 +56,8 @@ function generarTablero(filas, columnas) {
 
                         if (data.valor !== -1 && data.valor !== 0) {
 
-                            spanNumero.setAttribute('style', 'color: ${coloresNumeros[data.valor - 1]}');
+                            spanNumero.setAttribute('style', `color: ${coloresNumeros[data.valor - 1]}`);
+                            e.target.setAttribute('style', 'background-color: gray');
                             spanNumero.textContent = data.valor;
 
                             e.target.appendChild(spanNumero);
@@ -53,8 +70,8 @@ function generarTablero(filas, columnas) {
 
                         } else {
 
-                            spanNumero.textContent = '💣';
-                            e.target.appendChild(spanNumero);
+                            revelarCeldasConMinas(tableroData);
+                            e.target.appendChild(spanNumero)
 
                         }
 
@@ -68,7 +85,7 @@ function generarTablero(filas, columnas) {
 
                 }
 
-            }, fila, columna); //borrrar
+            }, fila, columna);
 
             celda.addEventListener("contextmenu", (e) => {
                 e.preventDefault();
@@ -87,17 +104,57 @@ function generarTablero(filas, columnas) {
 
             });
 
-            tablero.appendChild(celda);
+            tableroDiv.appendChild(celda);
 
         }
 
     }
     
-    tablero.style.gridTemplateColumns = `repeat(${columnas}, 30px)`;
+    tableroDiv.style.gridTemplateColumns = `repeat(${columnas}, 30px)`;
 
-    }
+}
 
-    document.querySelector('#nivel').addEventListener('change', async (e) => {
+function revelarCeldasConMinas(tablero) {
+
+    const celdas = document.querySelectorAll('.celda');
+
+    celdas.forEach(celda => {
+
+        const fila = parseInt(celda.dataset.fila);
+        const columna = parseInt(celda.dataset.columna);
+
+        if (tablero[fila] && tablero[fila][columna] === -1) {
+            
+            celda.classList.add('revelada');
+            const spanMina = document.createElement('span');
+            spanMina.textContent = '💣';
+            celda.appendChild(spanMina);
+
+        }
+
+    });
+
+    eliminarBanderas();
+        
+}
+
+function eliminarBanderas() {
+
+    const celdas = document.querySelectorAll('.celda');
+
+    celdas.forEach(celda => {
+
+        if (celda.classList.contains('bandera')) {
+
+            celda.classList.remove('bandera');
+
+        }
+
+    });
+
+}
+
+document.querySelector('#nivel').addEventListener('change', async (e) => {
 
     var nivel = document.getElementById("nivel").value;
 
@@ -120,19 +177,6 @@ function generarTablero(filas, columnas) {
 
     }
 
-    const coloresNumeros = [
-
-        "blue",
-        "green",
-        "red",
-        "purple",
-        "maroon",
-        "turquoise",
-        "black",
-        "gray",
-
-    ]
-
     await fetch('generar_tablero.php', {
 
         method: 'POST',
@@ -148,6 +192,7 @@ function generarTablero(filas, columnas) {
     .then(data => {
 
         console.log(data);
+        generarTablero(filas, columnas, data.tablero);
 
     })
     .catch((error) => {
@@ -156,6 +201,6 @@ function generarTablero(filas, columnas) {
 
     });
 
-    generarTablero(filas, columnas);
+    
 
-    });
+});

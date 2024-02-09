@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode([
 
         'nivel' => $nivel,
-        'table' => $tablero
+        'tablero' => $tablero
 
     ]);
 
