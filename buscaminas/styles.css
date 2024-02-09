@@ -36,3 +36,8 @@ body{
     pointer-events: none;
     
 }
+
+.bandera::after {
+    content: '🚩';
+    font-size: 20px;
+}

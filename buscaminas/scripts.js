@@ -66,10 +66,28 @@ function generarTablero(filas, columnas) {
             }, fila, columna);
 
             tablero.appendChild(celda);
+
+            celda.addEventListener("contextmenu", (e) => {
+                e.preventDefault();
+            
+                if (!e.target.classList.contains('revelada')) {
+
+                    if (!e.target.classList.contains('bandera')) {
+
+                        e.target.classList.add('bandera');
+                        
+                    } else {
+                        e.target.classList.remove('bandera');
+                        
+                    }
+                }
+                
+            });
+
         }
 
     }
-
+    
     tablero.style.gridTemplateColumns = `repeat(${columnas}, 30px)`;
 
     }
