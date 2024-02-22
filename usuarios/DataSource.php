@@ -7,7 +7,7 @@ class DataSource {
     public function __construct() {
         try{
             $this->cadenaParaConexion = "mysql:host=localhost;dbname=prueba";
-            $this->conexion = new PDO($this->cadenaParaConexion, "root", "");
+            $this->conexion = new PDO($this->cadenaParaConexion, "root", "root");
         } catch (PDOException $e) {
             echo "Error: " . $e->getMessage();
         }

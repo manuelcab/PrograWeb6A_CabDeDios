@@ -13,8 +13,8 @@ class Usuario{
             $usuarioDAO = new UsuarioDAO();
             $usuario = $usuarioDAO->buscar($id);
             $this->id = $usuario[0]['id'];
-            $this->nombre = $usuario[0]['nombres'];
-            $this->apellido = $usuario[0]['apellidos'];
+            $this->nombres = $usuario[0]['nombres'];
+            $this->apellidos = $usuario[0]['apellidos'];
             $this->correo = $usuario[0]['correo'];
         }
     }
@@ -42,4 +42,27 @@ class Usuario{
     public function getCorreo() {
         return $this->correo;
     }
+
+    public function crear($datos){
+        $usuario = new Usuario();
+        $usuario->setNombres($datos['nombres']);
+        $usuario->setApellidos($datos['apellidos']);
+        $usuario->setCorreo($datos['correo']);
+        return $usuario->guardar();
+    }
+
+    public function actualizar(){
+        $usuarioDAO = new UsuarioDAO();
+        return $usuarioDAO->actualizar($this);
+    }
+
+    public function eliminar($id){
+        $usuarioDAO = new UsuarioDAO();
+        return $usuarioDAO->eliminar($id);
+    }
+
+    public function guardar() {
+        $usuarioDAO = new UsuarioDAO();
+        return $usuarioDAO->insertar($this);
+      }
 }
