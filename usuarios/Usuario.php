@@ -53,7 +53,7 @@ class Usuario{
 
     public function actualizar(){
         $usuarioDAO = new UsuarioDAO();
-        return $usuarioDAO->actualizar($this);
+        return $usuarioDAO->actualizar($this, $this->id);
     }
 
     public function eliminar($id){
@@ -63,6 +63,15 @@ class Usuario{
 
     public function guardar() {
         $usuarioDAO = new UsuarioDAO();
-        return $usuarioDAO->insertar($this);
-      }
+        $usuarioDAO->insertar($this);
+        $this->setId($usuarioDAO->obtenerUltimoIdInsertado());
+    }
+
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
 }

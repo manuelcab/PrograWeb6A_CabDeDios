@@ -7,7 +7,7 @@ interface IDao{
 
     public function insertar(Usuario $usuario);
 
-    public function actualizar(Usuario $usuario);
+    public function actualizar(Usuario $usuario, $id);
 
     public function eliminar($id);
 }

@@ -1,5 +1,7 @@
 <?php
 
+include 'EnvLoader.php';
+
 class DataSource {
     private $cadenaParaConexion;
     private $conexion;
@@ -31,5 +33,9 @@ class DataSource {
         }else{
             return 0;
         }
+    }
+
+    public function obtenerUltimoIdInsertado() {
+        return $this->conexion->lastInsertId();
     }
 }

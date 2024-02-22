@@ -45,13 +45,13 @@ class UsuarioDAO implements IDao {
         return $this->dataSource->ejecutarActualizacion($sql, $values);
     }
     
-    public function actualizar(Usuario $usuario){
+    public function actualizar(Usuario $usuario, $id){
         $sql = "UPDATE usuarios SET nombres = :nombres, apellidos = :apellidos, correo = :correo WHERE id = :id";
         $values = [
             ":nombres" => $usuario->getNombres(),
             ":apellidos" => $usuario->getApellidos(),
             ":correo" => $usuario->getCorreo(),
-            ":id" => $usuario->getId()
+            ":id" => $id
         ];
     
         return $this->dataSource->ejecutarActualizacion($sql, $values);
@@ -64,6 +64,10 @@ class UsuarioDAO implements IDao {
         ];
     
         return $this->dataSource->ejecutarActualizacion($sql, $values);
+    }
+
+    public function obtenerUltimoIdInsertado() {
+        return $this->dataSource->obtenerUltimoIdInsertado();
     }
 
 }

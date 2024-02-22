@@ -38,3 +38,11 @@ echo '<br>';
 
 $porky->setCorreo("porkypig@wb.com");
 $porky->actualizar();
+
+$bugs->eliminar($bugs->getId());
+
+$usuarios = $usuarioDAO->buscarTodos();
+
+foreach($usuarios as $usuario){
+    echo $usuario->getNombres(). ' ' . $usuario->getApellidos() . ' ' . $usuario->getCorreo() . '<br>';
+}
