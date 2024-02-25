@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/style_formulario.css">
+        <title>Cargar Pelicula</title>
+    </head>
+    <body>
+        <main class="contenedor_principal">
+            <form id="formulario" method="post">
+                <label for="nombre">Pelicula:</label>
+                <input type="text" id="nombre" name="nombre" required placeholder="Titulo">
+                <label for="estreno">Fecha de Estreno:</label>
+                <input type="date" id="estreno" name="estreno" required placeholder="(YYYY-MM-DD)">
+                <label for="origen">Origen:</label>
+                <input type="text" id="origen" name="origen" required placeholder="Pais">
+                <label for="genero">Genero:</label>
+                <input type="text" id="genero" name="genero" required placeholder="Genero">
+                <label for="director">Director:</label>
+                <input type="text" id="director" name="director" required placeholder="Nombre">
+                <label for="actores">Actores</label>
+                <input type="text" id="actores" name="actores" required placeholder="Nombres">
+                <label for="musica">Director Musical</label>
+                <input type="text" id="musica" name="musica" required placeholder="Nombre">
+                <label for="imagen">Imagen:</label>
+                <input type="text" id="imagen" name="imagen" required placeholder="URL">
+                <input type="submit" value="Guardar">
+            </form>
+        </main>
+        <script src="../js/script_formulario.js"></script>
+    </body>
+</html>
