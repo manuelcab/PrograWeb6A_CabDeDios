@@ -3,7 +3,7 @@
 class EnvLoader {
   public static function get($key)
   {
-    $envFile = __DIR__ . '/.env';
+    $envFile = '../../.env';
     if (!file_exists($envFile)) {
       throw new Exception('.env file not found.');
     }
