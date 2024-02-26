@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     try {
 
-        $pelicula->guardar($pelicula);
+        $pelicula->guardar();
         echo 'Pelicula guardada con exito';
 
     } catch (Exception $e) {
