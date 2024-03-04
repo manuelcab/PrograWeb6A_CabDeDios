@@ -67,10 +67,10 @@ class PeliculaDAO implements IDao{
         return $this->dataSource->ejecutarActualizacion($sql, $values);
     }
 
-    public function eliminar($id){
-        $sql = "DELETE FROM peliculas WHERE id = :id";
+    public function eliminar($nombre){
+        $sql = "DELETE FROM peliculas WHERE nombre = :nombre";
         $values = [
-            ":id" => $id
+            ":nombre" => $nombre
         ];
     
         return $this->dataSource->ejecutarActualizacion($sql, $values);

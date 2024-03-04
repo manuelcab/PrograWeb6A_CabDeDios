@@ -10,6 +10,6 @@ interface IDao{
 
     public function actualizar(Pelicula $pelicula, $id);
 
-    public function eliminar($id);
+    public function eliminar($nombre);
 
 }
